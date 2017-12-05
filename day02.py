@@ -7,38 +7,7 @@
 # @url https://adventofcode.com/2017/day/2
 
 
-def checksum(matrix):
-
-    checksum = 0
-    for row in matrix:
-        checksum += (max(row)-min(row))
-    return checksum
-
-def string_to_matrix(string):
-
-    matrix = string.split('\n')
-
-    for i, _ in enumerate(matrix):
-        matrix[i] = matrix[i].split()
-
-        for k, _ in enumerate(matrix[i]):
-            matrix[i][k] = int(matrix[i][k])
-
-
-    print(matrix)
-    return matrix
-
-def test_small():
-    data = """5 1 9 5
-              7 5 3
-              2 4 6 8"""
-
-    matrix = string_to_matrix(data)
-    print("checksum:",checksum(matrix))
-
-
-def test_big():
-    data = """3751  3769    2769    2039    2794    240 3579    1228    4291    220 324 3960    211 1346    237 1586
+input_data = """3751  3769    2769    2039    2794    240 3579    1228    4291    220 324 3960    211 1346    237 1586
 550 589 538 110 167 567 99  203 524 288 500 111 118 185 505 74
 2127    1904    199 221 1201    250 1119    377 1633    1801    2011    1794    394 238 206 680
 435 1703    1385    1461    213 1211    192 1553    1580    197 571 195 326 1491    869 1282
@@ -54,12 +23,70 @@ def test_big():
 2602    216 495 3733    183 4688    2893    4042    3066    3810    189 4392    3900    4321    2814    159
 166 136 80  185 135 78  177 123 82  150 121 145 115 63  68  24
 214 221 265 766 959 1038    226 1188    1122    117 458 1105    1285    1017    274 281"""
-    
-    matrix = string_to_matrix(data)
-    print("checksum:",checksum(matrix))
 
+
+
+def string_to_matrix(string):
+
+    matrix = string.split('\n')
+
+    for i, _ in enumerate(matrix):
+        matrix[i] = matrix[i].split()
+
+        for k, _ in enumerate(matrix[i]):
+            matrix[i][k] = int(matrix[i][k])
+
+    return matrix
+
+#  
+# Solves Day 2 - part1
+#
+def checksum_minmax(matrix):
+
+    checksum = 0
+    for row in matrix:
+        checksum += (max(row)-min(row))
+    return checksum
+
+#  
+# Solves Day 2 - part 2
+#
+def checksum_evenlydivisible(matrix):
+
+    checksum = 0
+    for row in matrix:
+        for num1 in row:
+            for num2 in row:
+                if num1 != num2:
+                    if num1 % num2 == 0:
+                        checksum += num1 // num2
+                        continue
+    return checksum
+
+#
+# Testing
+#
+def test_small():
+    data = """5 1 9 5
+              7 5 3
+              2 4 6 8"""
+
+    matrix = string_to_matrix(data)
+    print("checksum:",checksum_minmax(matrix))
+
+
+def test_big():
+    global input_data
+    matrix = string_to_matrix(input_data)
+    print("checksum:",checksum_minmax(matrix))
+
+
+def test_big_part2():
+    global input_data
+    matrix = string_to_matrix(input_data)
+    print("checksum:",checksum_evenlydivisible(matrix))
 
 if __name__ == "__main__":
-    
     test_small()
     test_big()
+    test_big_part2()
