@@ -75,10 +75,20 @@ def test_small():
     print("checksum:",checksum_minmax(matrix))
 
 
+
 def test_big():
     global input_data
     matrix = string_to_matrix(input_data)
     print("checksum:",checksum_minmax(matrix))
+
+
+def test_small_part2():
+    data = """5 9 2 8
+              9 4 7 3
+              3 8 6 5"""
+
+    matrix = string_to_matrix(data)
+    print("checksum:",checksum_evenlydivisible(matrix))
 
 
 def test_big_part2():
@@ -89,4 +99,6 @@ def test_big_part2():
 if __name__ == "__main__":
     test_small()
     test_big()
+    test_small_part2()
     test_big_part2()
+
