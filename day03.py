@@ -4,23 +4,10 @@
 #
 # @author Jonas J. Solsvik
 # @date 27.11.17
-# @url https://adventofcode.com/2017/day/2
+# @url https://adventofcode.com/2017/day/3
 #
-
-if __name__ == "__main__":
-
-    # 0. Initial state
-    target  = 50
-    step    = 1
-    value   = 0
-    offset  = -1
-    lap     = 0
-    running = True
-    right_turns        = 0
-    manhattan_distance = 0
-
     # 1. Advance iterator to hit spiral target
-    print("val", 
+"""    print("val", 
           "\t","st", 
           "\t","mid", 
           "\t","off",
@@ -28,6 +15,19 @@ if __name__ == "__main__":
           "\t", "mdist",
           "\t", "rturn", 
           "\t", "lap")
+"""
+
+if __name__ == "__main__":
+
+    # 0. Initial state
+    target  = 347991
+    step    = 1
+    value   = 0
+    offset  = -1
+    lap     = 0
+    running = True
+    right_turns        = 0
+    manhattan_distance = 0
 
     while running:
         for i in range(step * 2):
@@ -56,16 +56,9 @@ if __name__ == "__main__":
             distance_center    = lap
             manhattan_distance = distance_mid + distance_center
 
-            '''
-            print(value, 
-                  "\t",step, 
-                  "\t",mid, 
-                  "\t",offset,
-                  "\t", offset_step,
-                  "\t", manhattan_distance,
-                  "\t", right_turns,
-                  "\t", lap)'''
-
         #print("STEP UP!")
         step   +=  1
         offset  = -1
+
+
+print(value, manhattan_distance)
